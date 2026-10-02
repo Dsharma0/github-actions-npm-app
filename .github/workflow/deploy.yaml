@@ -20,6 +20,6 @@ jobs:
           username: root
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-             cd /root/claud-ai/day3/
+             cd /root/claud-ai/day3/actions
              git pull 
              docker compose up -d --build
