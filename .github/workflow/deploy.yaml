@@ -3,7 +3,7 @@ name: Deploy Web Application using ngrok
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
