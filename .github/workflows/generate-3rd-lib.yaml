@@ -1,0 +1,24 @@
+name: Generate 3rd Party Library
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  generate-3rd-lib:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v7
+
+      - name: install cowsay library
+        run: sudo apt-get install -y cowsay
+
+      - name: generate 3rd party library
+        run: cowsay -f dragon "I'm a dragon" >> dragon.txt
+
+      - name: check dragon.txt
+        run: cat dragon.txt
+      - name: list files
+        run: ls -la 
