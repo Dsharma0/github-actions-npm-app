@@ -12,15 +12,10 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v7
 
-      - name: install cowsay library
-        run: sudo apt-get install -y cowsay
-
-      - name: generate 3rd party library
-        run: cowsay -f dragon "I'm a dragon" >> dragon.txt
-
-      - name: check dragon.txt
-        run: cat dragon.txt
-      - name: list files
-        run: ls -la 
-      - name: only this workflow will run
-        run: echo "only this workflow will run" 
+      - name: hold your breath , script is going to run
+        run: |
+           for i in {1..10}; do
+            echo "sleeping for $i seconds" && sleep 1
+           done
+      - name: Run generate script
+        run: bash bash.sh
