@@ -29,12 +29,10 @@ jobs:
         run: ls python.txt
      
   job-deploy:
-    name: Deploy 
-    run-on: ubuntu-latest
-    steps: 
-        - name: read file
-          run: cat python.txt
-
-        - name: deploy
-          run: echo "deplying python"
-        
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: cat python.txt
+        run: cat python.txt
+      - name: deploy python
+        run: echo "deploying python "
