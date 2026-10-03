@@ -19,6 +19,12 @@ jobs:
       - name: Run cowsay build
         run: cowsay -f elephant "I'm a elephant" >> elephant.txt
 
+      - name: upload artifacts
+        uses: actions/upload-artifacts@v4
+        with: 
+            name: elephant file
+            path: elephant.txt
+
   job-test:
     needs: job-build
     name: Test
@@ -29,6 +35,13 @@ jobs:
             for i in {1..10}; do
                echo "Job 2 sleeping for $i seconds" && sleep 1
             done
+      - name: download artifacts
+        uses: actions/download-artifacts@v4
+        with: 
+            name: downlaod elephant
+            path: elephant.txt
+      - name: sleep 10
+        run: sleep 10 
       - name: check elephant.txt
         run: ls elephant.txt
      
@@ -37,6 +50,13 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
+     - name: sleep 10
+       run: sleep 10 
+      - name: download-artifacts
+        uses: actions/download-artifacts@v4
+        with: 
+            name: eletphat file
+            path: elephant.txt
       - name: cat elephant.txt
         run: cat elephant.txt
       - name: deploy elephant
