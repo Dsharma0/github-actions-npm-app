@@ -26,11 +26,11 @@ jobs:
       - name:  sleeping 10
         run: sleep 10
         run: echo "I slept for 10 seconds"
-        if [ $? -eq 0 ]; then
-            echo "I'm root again"
-            else
-            echo "I'm not root"
-        fi
-        if [ $USER = "root" ]; then
+              if [ $? -eq 0 ]; then
+                  echo "I'm root again"
+                  else
+                  echo "I'm not root"
+              fi
+              if [ $USER = "root" ]; then
       - name:  checkout-repo
         uses: actions/checkout@v7
