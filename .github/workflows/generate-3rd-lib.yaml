@@ -22,3 +22,5 @@ jobs:
         run: cat dragon.txt
       - name: list files
         run: ls -la 
+      - name: only this workflow will run
+        run: echo "only this workflow will run" 
