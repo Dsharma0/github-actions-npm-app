@@ -17,5 +17,9 @@ jobs:
 
       - name: This is all
         run: echo "this is all. done"
+      - name:  sleeping 5
+        run: sleep 5
+      - name:  sleeping 10
+        run: sleep 10
       - name:  checkout-repo
         uses: actions/checkout@v7
