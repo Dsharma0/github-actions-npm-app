@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Run sleep
         run: for i in {1..10}; do
-            echo "Job 2 sleeping for $i seconds" && sleep 1"
+            echo "Job 2 sleeping for $i seconds && sleep 1"
            done
       - name: check elephant.txt
         run: ls elephant.txt
