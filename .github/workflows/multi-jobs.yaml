@@ -19,7 +19,7 @@ jobs:
       - name: sleep 25
         run: sleep 25
       - name: Run cowsay build
-        run: sudo cowsay -f elephant "I'm a elephant" >> elephant.txt
+        run: cowsay -f elephant "I'm a elephant" >> elephant.txt
       - name: sleep 30 second
         run: sleep 30
 
