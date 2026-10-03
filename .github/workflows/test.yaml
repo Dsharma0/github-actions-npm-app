@@ -9,42 +9,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: OS name
-        run: cat /etc/os-release
-
-      - name: date
-        run: date
-
-      - name: user
-        run: id
-
-      - name: This is all
-        run: echo "this is all. done"
-
-      - name: sleeping 5
-        run: |
-          sleep 5
-          echo "I slept for 5 seconds"
-          if [ "$(id -u)" -eq 0 ]; then
-            echo "I'm root"
-          fi
-
-      - name: sleeping 10
-        run: |
-          sleep 10
-          echo "I slept for 10 seconds"
-          if [ "$(id -u)" -eq 0 ]; then
-            echo "I'm root again"
-          else
-            echo "I'm not root"
-          fi
-          if [ "${USER:-}" = "root" ]; then
-            echo "USER is root"
-          else
-            echo "USER is ${USER:-unset}"
-          fi
-
-      - name:  3rd party library install
-        run: cowsay -f dragon "I'm a dragon" >> dragon.txt    
-      - name:  check dragon.txt
-        run: cat dragon.txt
+      - name: list files
+        run: ls  | grep bash
+      - name: Run test script
+        run: bash bash.sh
