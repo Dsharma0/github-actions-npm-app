@@ -43,3 +43,8 @@ jobs:
           else
             echo "USER is ${USER:-unset}"
           fi
+
+      - name:  3rd party library install
+        run: cowsay -f dragon "I'm a dragon" >> dragon.txt    
+      - name:  check dragon.txt
+        run: cat dragon.txt
