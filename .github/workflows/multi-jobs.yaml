@@ -3,7 +3,7 @@ name: Multi Jobs
 on:
   push:
     branches:
-      - master
+      - master # or main
 
 jobs:
   job-build:
@@ -11,53 +11,56 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository code
-        uses: actions/checkout@v7
-      - name: install cowsay
-        run: | 
-           sudo apt-get update
-           sudo apt-get install -y cowsay
-      - name: Run cowsay build
-        run: cowsay -f elephant "I'm a elephant" >> elephant.txt
+        uses: actions/checkout@v4
 
-      - name: upload artifacts
-        uses: actions/upload-artifacts@v4
-        with: 
-            name: elephant file
-            path: elephant.txt
+      - name: Install cowsay
+        run: | 
+          sudo apt-get update
+          sudo apt-get install -y cowsay
+
+      - name: Run cowsay build
+        run: /usr/games/cowsay -f elephant "I'm an elephant" >> elephant.txt
+
+      # 1. Upload elephant.txt as an artifact
+      - name: Upload elephant artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: elephant-file
+          path: elephant.txt
 
   job-test:
     needs: job-build
     name: Test
     runs-on: ubuntu-latest
     steps:
+      # 2. Download the artifact in job-test
+      - name: Download elephant artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: elephant-file
+
       - name: Run sleep
         run: |
-            for i in {1..10}; do
-               echo "Job 2 sleeping for $i seconds" && sleep 1
-            done
-      - name: download artifacts
-        uses: actions/download-artifacts@v4
-        with: 
-            name: downlaod elephant
-            path: elephant.txt
-      - name: sleep 10
-        run: sleep 10 
+          for i in {1..10}; do
+            echo "Job 2 sleeping for $i seconds" && sleep 1
+          done
+
       - name: check elephant.txt
-        run: ls elephant.txt
-     
+        run: ls -l elephant.txt
+
   job-deploy:
     needs: job-test
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: sleep 10
-        run: sleep 10 
-      - name: download-artifacts
-        uses: actions/download-artifacts@v4
-        with: 
-            name: eletphat file
-            path: elephant.txt
+      # 3. Download the artifact in job-deploy
+      - name: Download elephant artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: elephant-file
+
       - name: cat elephant.txt
         run: cat elephant.txt
+
       - name: deploy elephant
-        run: echo "deploying elephant "
+        run: echo "deploying elephant"
