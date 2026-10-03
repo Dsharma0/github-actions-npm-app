@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v7
       - name: Run cowsay build
-        run: cowsay -f python "I'm a python" >> python.txt
+        run: cowsay -f elephant "I'm a elephant" >> elephant.txt
       - name: sleep 30 second
         run: sleep 30
 
@@ -25,14 +25,14 @@ jobs:
         run: for i in {1..10}; do
             echo "Job 2 sleeping for $i seconds" && sleep 1
            done
-      - name: check python.txt
-        run: ls python.txt
+      - name: check elephant.txt
+        run: ls elephant.txt
      
   job-deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: cat python.txt
-        run: cat python.txt
-      - name: deploy python
-        run: echo "deploying python "
+      - name: cat elephant.txt
+        run: cat elephant.txt
+      - name: deploy elephant
+        run: echo "deploying elephant "
