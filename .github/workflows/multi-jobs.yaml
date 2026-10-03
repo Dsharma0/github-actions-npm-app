@@ -28,7 +28,7 @@ jobs:
       - name: check python.txt
         run: ls python.txt
      
-  job-build:
+  job-deploy:
     name: Deploy 
     run-on: ubuntu-latest
     steps: 
