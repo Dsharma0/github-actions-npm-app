@@ -24,6 +24,7 @@ jobs:
         run: sleep 30
 
   job-test:
+    needs: job-build
     name: Test
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +36,7 @@ jobs:
         run: ls elephant.txt
      
   job-deploy:
+    needs: job-test
     name: Deploy
     runs-on: ubuntu-latest
     steps:
