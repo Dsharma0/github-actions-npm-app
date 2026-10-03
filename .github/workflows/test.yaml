@@ -17,3 +17,5 @@ jobs:
 
       - name: This is all
         run: echo "this is all. done"
+      - name:  checkout-repo
+        uses: actions/checkout@v7
