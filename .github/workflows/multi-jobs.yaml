@@ -1,0 +1,40 @@
+name: Multi Jobs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  job-build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v7
+      - name: Run cowsay build
+        run: cowsay -f python "I'm a python" >> python.txt
+      - name: sleep 30 second
+        run: sleep 30
+
+  job-test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run sleep
+        run: for i in {1..10}; do
+            echo "Job 2 sleeping for $i seconds" && sleep 1
+           done
+      - name: check python.txt
+        run: ls python.txt
+     
+  job-build:
+    name: Deploy 
+    run-on: ubuntu-latest
+    steps: 
+        - name: read file
+          run: cat python.txt
+
+        - name: deploy
+          run: echo "deplying python"
+        
