@@ -50,8 +50,8 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-     - name: sleep 10
-       run: sleep 10 
+      - name: sleep 10
+        run: sleep 10 
       - name: download-artifacts
         uses: actions/download-artifacts@v4
         with: 
