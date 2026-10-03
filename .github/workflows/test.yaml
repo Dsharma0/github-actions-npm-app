@@ -1,0 +1,16 @@
+name: Testing github workflow
+
+on: push
+
+jobs:
+   1st-github-action:
+      runs-on: ubuntu-latest
+      steps: 
+        - name: OS name
+          run: cat /etc/redhat-release
+        - name: date
+          run: date
+        - name: user
+          run: id
+        - name: This is all
+          run: echo "this is all. done" 
