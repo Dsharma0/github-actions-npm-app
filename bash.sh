@@ -6,5 +6,7 @@ sudo apt-get install -y cowsay
 
 cowsay -f dragon "I'm a dragon" >> dragon.txt
 cat dragon.txt
+cowthink -f elephant "I'm an elephant"
+cat elephant.txt
 ls -la
 echo "only this workflow will run"
